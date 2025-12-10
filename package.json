@@ -1,0 +1,54 @@
+{
+  "name": "repro-zip-js-macos-issue",
+  "version": "0.0.0",
+  "license": "MIT",
+  "description": "",
+  "keywords": [],
+  "author": "tpoisseau",
+  "type": "module",
+  "exports": {
+    ".": "./lib/index.js"
+  },
+  "files": [
+    "lib",
+    "src"
+  ],
+  "scripts": {
+    "check-types": "tsc --noEmit",
+    "clean": "rimraf coverage lib",
+    "eslint": "eslint .",
+    "eslint-fix": "eslint . --fix",
+    "prepack": "npm run tsc",
+    "prettier": "prettier --check .",
+    "prettier-write": "prettier --write .",
+    "test": "npm run test-only && npm run check-types && npm run eslint && npm run prettier",
+    "test-only": "vitest run --coverage",
+    "tsc": "npm run clean && npm run tsc-build",
+    "tsc-build": "tsc --project tsconfig.build.json"
+  },
+  "dependencies": {
+    "@zip.js/zip.js": "^2.8.11"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.2",
+    "@vitest/coverage-v8": "^4.0.15",
+    "@zakodium/tsconfig": "^1.0.2",
+    "eslint": "^9.39.1",
+    "eslint-config-cheminfo-typescript": "^21.0.1",
+    "prettier": "^3.7.4",
+    "rimraf": "^6.1.2",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.15"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tpoisseau/repro-zip-js-macos-issue.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tpoisseau/repro-zip-js-macos-issue/issues"
+  },
+  "homepage": "https://github.com/tpoisseau/repro-zip-js-macos-issue#readme",
+  "volta": {
+    "node": "24.11.1"
+  }
+}
