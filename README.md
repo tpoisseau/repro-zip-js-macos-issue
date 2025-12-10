@@ -70,3 +70,27 @@ So if both `file` extract wrong mimetype, it should be a bug in the zip writer.
 ### NB:
 
 unzip command (both macos and linux), The unarchiver app (a userland app for macos) works fine and they extract the mimetype file correctly.
+
+```console
+cd zips
+printf 'application/zip' > mimetype
+printf 'application/zip' > .mimetype
+printf 'Hello World!' > file.txt
+zip -0 -X zip-mimetype-X.zip mimetype file.txt
+zip -0 zip-mimetype.zip mimetype file.txt
+zip -0 -X zip-.mimetype-X.zip .mimetype file.txt
+zip -0 zip-.mimetype.zip .mimetype file.txt
+```
+
+`-0` to STORE (no compression), `-X` to exclude extra file attributes.
+
+`zip -0 -X zip-mimetype-X.zip mimetype file.txt` -> `zip-mimetype-X.zip` is unreadable for mac, and other files are readable for macos.
+
+But there is a diff between `zip-mimetype-X.zip` and `mimetype-zip-0-false.zip` they should be equivalent, but `file` command does not extract the same mimetype.
+
+```console
+file mimetype-zip-0-false.zip
+# Zip data (MIME type "application/zipN"?)
+file zip-mimetype-X.zip
+# Zip data (MIME type "application/zip"?)
+```
