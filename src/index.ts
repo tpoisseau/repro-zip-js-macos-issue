@@ -5,7 +5,7 @@ import { join, relative } from 'node:path';
 
 import { BlobWriter, TextReader, ZipWriter } from '@zip.js/zip.js';
 
-const entryNames = ['mimetype', 'gibberish'];
+const entryNames = ['mimetype', 'gibberish', 'MIMETYPE'];
 const compressionMethods = [0, 8];
 const mimetypes = ['application/zip', 'application/x-nmrium+zip'];
 const extendedTimestamps = [true, false];
@@ -34,6 +34,7 @@ async function test(
     compressionMethod,
     extendedTimestamp,
   });
+  await zipWriter.add('file.txt', new TextReader('Hello World!'));
 
   const blob = await zipWriter.close();
 
