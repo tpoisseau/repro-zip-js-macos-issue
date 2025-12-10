@@ -5,7 +5,7 @@ MacOS incompatibility with `zip.js`:
 Refs: https://github.com/cheminfo/file-collection/issues/79
 
 After further investigations to reproduce in minimal environment the issue,
-It seems `zip.js` produce invalid zip when `extendedTimestamp` is set to false.
+It seems `zip.js` produce invalid zip when `extendedTimestamp` is set to `false` and the first file is `mimetype`.
 
 ## Prerequisites
 
