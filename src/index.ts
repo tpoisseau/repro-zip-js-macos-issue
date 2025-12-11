@@ -33,6 +33,8 @@ async function test(
   await zipWriter.add(entryName, new TextReader(mimetype), {
     compressionMethod,
     extendedTimestamp,
+    dataDescriptor: false,
+    dataDescriptorSignature: false,
   });
   await zipWriter.add('file.txt', new TextReader('Hello World!'));
 
